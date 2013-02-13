@@ -7,15 +7,15 @@ class SearchRankChecker
 
   GOOGLE = {
     url: 'http://www.google.co.jp/search?ie=UTF-8&hl=en&q=%s&num=%d',
-    selector: 'body div#res h3.r a',
+    selector: 'body #res h3.r a',
   }
 
   YAHOO = {
     url: 'http://search.yahoo.co.jp/search?ei=UTF-8&p=%s&n=%d',
-    selector: 'body div#mIn ul li.w h3 a',
+    selector: '#WS2m ul li h3 a',
   }
 
-  USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)'
+  USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7'
 
   def initialize(search_engine, user_agent=nil)
     @mechanize = Mechanize.new do |agent|
@@ -49,7 +49,8 @@ class SearchRankChecker
 end
 
 crawler = SearchRankChecker.new SearchRankChecker::GOOGLE
-puts crawler.check_rank 'sanojimaru', 'http://sanojimaru.com'
+puts crawler.check_rank '検索エンジン', 'http://ja.wikipedia.org/wiki/%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3'
 
 crawler = SearchRankChecker.new SearchRankChecker::YAHOO
-puts crawler.check_rank 'sanojimaru', 'http://sanojimaru.com'
+puts crawler.check_rank '検索エンジン', 'http://ja.wikipedia.org/wiki/%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3'
+
